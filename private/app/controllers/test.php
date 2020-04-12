@@ -54,16 +54,12 @@ class Test extends Controller {
 
          
         
-    }
+    
     function Logout(){
         session_unset();
         session_destroy();
         $_SESSION = Array();
         header("location: /test/");
-        
-
     }
-    }
-
-
+    
 ?>
