@@ -7,8 +7,8 @@ class UserModel extends Model {
     }
 
     function authenticateUser($username, $password){
-        $cl_name = htmlentutues($username);
-        $cl_pass = htmlentities($password);
+        $cl_name = $username;
+        $cl_pass = $password;
 
         $sql = "SELECT 'firstname', 'lastname', 'pass_hash' FROM 'authors' where email = ?";
         $stmt = $this->db->prepare($sql);
@@ -17,7 +17,7 @@ class UserModel extends Model {
         $pass_hash = $row[2];
         $is_auth = false;
         if (isset($pass_hash)){
-            $is_auth = password_verify(cl_pass, $pass_hash);
+            $is_auth = password_verify($cl_pass, $pass_hash);
             if ($is_auth) {
                 
                 $_SESSION['firstname'] = $row[0];

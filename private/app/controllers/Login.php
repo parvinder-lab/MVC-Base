@@ -1,6 +1,6 @@
 <?php
 
-class Test extends Controller {
+class Login extends Controller {
 
     function __construct() {
         parent::__construct();
@@ -8,7 +8,8 @@ class Test extends Controller {
 
     function Index () {
         $this->view("template/header");
-        $is_auth = isset($_SESSION["firstname"]);
+        $is_auth = isset($_SESSION["username"]);
+
         if ($is_auth) {
             $this->view("test/auth");
         }else {
@@ -16,6 +17,9 @@ class Test extends Controller {
         }
        // $this->view("test/auth");
         $this->view("template/footer");
+    }
+    function parameterTest($param) {
+        echo($param);
     }
 
     function Login(){
@@ -26,21 +30,18 @@ class Test extends Controller {
 
             if ($csrf == $post_csrf && $csrf == $cook_csrf) {
 
-            
-
             $this->model("UserModel");
-            $cl_email = $_POST["username"];
-            $cl_pass = $_POST["pass"];
+            $cl_name = htmlentities($_POST["username"]);
+            $cl_pass = htmlentities($_POST["password"]);
 
-
-            $auth = $this->UserModel->authenticateUser{'A00210586@mycambrian.ca'};
-
-         if ($auth){
+            $auth = $this->UserModel->authenticateUser($cl_name, $cl_pass);
+         if ($auth) {
+         
+             
              header("location: /test/");
-            //  echo("Authenticated");
-            //  echo($_SESSION['firstname'] . "<br>");
-            //  echo($_SESSION['lastname'] . "<br>");
-            //  echo($_SESSION['username'] . "<br>");
+             echo($_SESSION['firstname'] . "<br>");
+             echo($_SESSION['lastname'] . "<br>");
+             echo($_SESSION['username'] . "<br>");
          } else {
              echo("Not Authenticated");
          }
@@ -53,7 +54,7 @@ class Test extends Controller {
              $this->view("test/login", array("csrf" => $csrf));
          }  
 
-        
+        }
         
     
     function Logout(){
@@ -63,5 +64,7 @@ class Test extends Controller {
         header("location: /test/");
     }
 }  
+}
+
 
 ?>
