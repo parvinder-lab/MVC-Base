@@ -6,11 +6,10 @@ class UserModel extends Model {
         
     }
 
-    function authenticateUser($username, $password){
+    function authenticateUser($username, $password) {
         $cl_name = $username;
         $cl_pass = $password;
-
-        $sql = "SELECT 'firstname', 'lastname', 'pass_hash' FROM 'authors' where email = ?";
+        $sql = "SELECT `firstname`, `lastname`, `pass_hash` FROM `authors` where email = ?";
         $stmt = $this->db->prepare($sql);
         $count = $stmt->execute(Array($cl_name));
         $row = $stmt->fetch();
@@ -27,9 +26,7 @@ class UserModel extends Model {
                 $upd_sql = "UPDATE 'authors' SET 'last_login_date' = CURRENT_TIMESTAMP() WHERE 'email' = ?";
                 $upd_stmt = $this->db->prepare($upd_sql);
                 $upd_stmt->execute(Array($cl_name));
-
-
-            }
+                        }
         }
         return $is_auth;
     

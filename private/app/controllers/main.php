@@ -6,9 +6,7 @@ class Main extends Controller {
         parent::__construct();
     }
     
-    /*
-     * http://localhost/
-     */
+    
     function Index () {
 
         $this->view("template/header");
