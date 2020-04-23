@@ -34,6 +34,7 @@ class Test extends Controller {
 
 
             $auth = $this->UserModel->authenticateUser{'A00210586@mycambrian.ca'};
+
          if ($auth){
              header("location: /test/");
             //  echo("Authenticated");
@@ -43,7 +44,7 @@ class Test extends Controller {
          } else {
              echo("Not Authenticated");
          }
-            }
+        }
          else {
             $csrf = random_int(10000, 100000000);
           //   echo("$csrf");
