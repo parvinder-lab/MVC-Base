@@ -39,9 +39,7 @@ class Login extends Controller {
          
              
              header("location: /test/");
-             echo($_SESSION['firstname'] . "<br>");
-             echo($_SESSION['lastname'] . "<br>");
-             echo($_SESSION['username'] . "<br>");
+             
          } else {
              echo("Not Authenticated");
          }
