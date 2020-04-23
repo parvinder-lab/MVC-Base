@@ -43,7 +43,7 @@ class Test extends Controller {
          } else {
              echo("Not Authenticated");
          }
-        }
+            }
          else {
             $csrf = random_int(10000, 100000000);
           //   echo("$csrf");
@@ -52,7 +52,7 @@ class Test extends Controller {
              $this->view("test/login", array("csrf" => $csrf));
          }  
 
-         
+        
         
     
     function Logout(){
@@ -61,5 +61,6 @@ class Test extends Controller {
         $_SESSION = Array();
         header("location: /test/");
     }
-    
+}  
+
 ?>

@@ -1,17 +1,21 @@
 <?php
 class UserModel extends Model {
-    parent::_construct() {
+    function __construct()
+    {
+    parent::_construct();
         
     }
 
     function authenticateUser($username, $password){
         $cl_name = htmlentutues($username);
-        $cl_pass = htmlentities($password)
+        $cl_pass = htmlentities($password);
+
         $sql = "SELECT 'firstname', 'lastname', 'pass_hash' FROM 'authors' where email = ?";
-        $stmt = $html->db->prepare(sql);
+        $stmt = $this->db->prepare($sql);
         $count = $stmt->execute(Array($cl_name));
         $row = $stmt->fetch();
         $pass_hash = $row[2];
+        $is_auth = false;
         if (isset($pass_hash)){
             $is_auth = password_verify(cl_pass, $pass_hash);
             if ($is_auth) {
@@ -29,7 +33,6 @@ class UserModel extends Model {
         }
         return $is_auth;
     
-    
-       
-}
+    }
+    }
 ?>
