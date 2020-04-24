@@ -16,7 +16,7 @@ function getAllPosts(){
 
 }
 function getPostById($postId) {
-        $sql = "SELECT title, author, post_due FROM posts WHERE SLUG = ?";
+        $sql = "SELECT 'slug', 'title', 'content', 'author', 'post_due' FROM posts WHERE SLUG = ?";
 
    $stmt = $this->db->prepare($sql);
     $stmt->execute(Array($postId));
