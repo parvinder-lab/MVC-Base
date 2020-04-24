@@ -1,6 +1,6 @@
 USE CMS;
 CREATE TABLE authors (
-    email VARCHAR(128) NOT NULL PRIMARY KEY,
+    email VARCHAR(128) PRIMARY KEY,
     firstname VARCHAR(128) NOT NULL,
     lastname VARCHAR(128) NOT NULL,
     biography TEXT NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE authors (
     );
 
 INSERT INTO authors (firstname, lastname, biography, pass_hash, email, last_login_date) 
-values ("Parvinder", "Singh", "I am a student", "mycambrian", "a00210586@mycambrian.ca", 12-11-11);
+values ("Parvinder", "Singh", "I am a student", "12345", "mycambrian", "a00210586@mycambrian.ca", 12-11-11);
 
 
 CREATE TABLE posts {
