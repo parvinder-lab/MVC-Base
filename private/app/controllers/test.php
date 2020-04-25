@@ -1,6 +1,6 @@
 <?php
 
-class Login extends Controller {
+class Test extends Controller {
 
     function __construct() {
         parent::__construct();
@@ -8,7 +8,7 @@ class Login extends Controller {
 
     function Index () {
         $this->view("template/header");
-        $is_auth = isset($_SESSION["username"]);
+        $is_auth = isset($_SESSION["firstname"]);
 
         if ($is_auth) {
             $this->view("test/auth");
@@ -18,11 +18,10 @@ class Login extends Controller {
        // $this->view("test/auth");
         $this->view("template/footer");
     }
-    function parameterTest($param) {
-        echo($param);
-    }
-
+}
+    
     function login(){
+        echo("login");
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $post_csrf = htmlentities($_POST["csrf"]);
             $cook_csrf = htmlentities($_COOKIE["csrf"]);
@@ -49,7 +48,7 @@ class Login extends Controller {
           //   echo("$csrf");
              $_SESSION['csrf'] = $csrf;
              setcookie("csrf" == $csrf);
-             $_COOKIE['csrf'] =$csrf;
+             $_COOKIE['csrf'] = $csrf;
              $this->view("test/login", array("csrf" => $csrf));
          }  
 
@@ -63,7 +62,7 @@ class Login extends Controller {
         header("location: /test/");
     }
 }  
-}
+
 
 
 ?>

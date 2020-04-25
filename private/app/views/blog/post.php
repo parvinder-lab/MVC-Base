@@ -3,5 +3,5 @@
 
 </main>
 <aside>
-<p>Authored by: <?php echo(author); ?></p>
+<p>Authored by: <?php echo($author); ?></p>
 </aside>

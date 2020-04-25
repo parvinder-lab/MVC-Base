@@ -6,7 +6,7 @@ class BlogModel extends Model {
         
     }
 function getAllPosts(){
-    $sql = "SELECT slug, title, author, post_due FROM posts";
+    $sql = "SELECT `slug`, `title`, `author`, `post_date` FROM `posts`";
 
    $stmt = $this->db->prepare($sql);
     $stmt->execute();
@@ -16,7 +16,7 @@ function getAllPosts(){
 
 }
 function getPostById($postId) {
-        $sql = "SELECT slug, title, content, author, post_due FROM posts WHERE slug = ?";
+        $sql = "SELECT slug, title, content, author, post_date FROM posts WHERE slug = ?";
 
    $stmt = $this->db->prepare($sql);
     $stmt->execute(Array($postId));
