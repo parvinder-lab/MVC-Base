@@ -60,7 +60,7 @@ class Blog extends Controller {
     }
 
 
-    function Update(){
+    function Update($postId) {
          $is_auth = isset($_SESSION["username"]);
         if ($is_auth){
             echo("authenticated");
@@ -79,10 +79,11 @@ class Blog extends Controller {
 
            header("location: /blog/read/" . $slug);
         } else {
-
-            $this->view("template/header");
-        $this->view("blog/update");
-        $this->view("template/footer");
+                       $this->model("BlogModel");
+                        $post = $this->BlogModel->getPostById($postId);
+                          $this->view("template/header");
+                           $this->view("blog/update");
+                           $this->view("template/footer");
 
         }
 } 
