@@ -27,7 +27,7 @@ class Blog extends Controller {
 
     }
     function Create(){
-        $is_auth = isset($_SESSION["firstname"]);
+        $is_auth = isset($_SESSION["username"]);
         if ($is_auth){
             echo("authenticated");
 
