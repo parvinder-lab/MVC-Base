@@ -71,7 +71,7 @@ abstract class Controller {
 
         $path = strtolower($path);
 
-        require(ROOT . "/private/app/models/$path.php");
+        require(ROOT . "/private/app/model/$path.php");
 
         $this->$class = new $class;
     }

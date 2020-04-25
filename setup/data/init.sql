@@ -10,11 +10,11 @@ CREATE TABLE authors (
     );
 
 INSERT INTO authors (firstname, lastname, biography, pass_hash, email, last_login_date) 
-values ("Parvinder", "Singh", "I am a student", "12345", "mycambrian", "a00210586@mycambrian.ca", 12-11-11);
+values ("Parvinder", "Singh", "I am a student", "12345", "a00210586@mycambrian.ca",  '2019-01-01 23:59:59');
 
 
-CREATE TABLE posts {
-    slug VARCHAR(128) NOT NULL PRIMARY KEY,
+CREATE TABLE posts (
+    slug VARCHAR(128) PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     content TEXT,
     author VARCHAR(128) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE posts {
     INDEX (author),
     FOREIGN KEY(author)
     REFERENCES authors (email)
-};
+);
 
-INSERT INTO 'posts' (slug, title, content, author)
-VALUES("post-a", "POST-A", "<article><h2>Post A</h2><section><p>This is a basic post for the blog.</p><section></article>", "a00210586@mycambrian.ca")
+INSERT INTO `posts` (slug, title, content, author)
+VALUES("post-a", "POST-A", "<article><h2>Post A</h2><section><p>This is a basic post for the blog.</p><section></article>", "a00210586@mycambrian.ca");

@@ -8,7 +8,9 @@ class Blog extends Controller {
     }
 
     function Index() {
+        echo("work");
         $this->model("BlogModel");
+    
         $posts = $this->BlogModel->getAllPosts();
         $input = Array("posts" => $posts);
         print_r($posts);
