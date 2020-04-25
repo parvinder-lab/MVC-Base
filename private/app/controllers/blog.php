@@ -30,15 +30,14 @@ class Blog extends Controller {
         $is_auth = isset($_SESSION["username"]);
         if ($is_auth){
             echo("authenticated");
-
-        } else {
-            header("location: /blog");
-        }
-        $is_auth = isset($_SESSION["username"]);
-        if (!$is_auth) {
             header("location: /blog");
             return;
+
+        
         }
+      
+
+        
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
            $title = $_POST["title"];
            $content = $_POST["content"];

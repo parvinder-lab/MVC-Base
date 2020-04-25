@@ -38,6 +38,7 @@ class Test extends Controller {
         
          $auth = $this->UserModel->authenticateUser($cl_name, $cl_pass);
           if ($auth) {
+              $page = $this->buildRelativeUrl($_SERVER['HTTP_REFERER'], 3);
          
            echo("authenticated");
              header("location: /test/");

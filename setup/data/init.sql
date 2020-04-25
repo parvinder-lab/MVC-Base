@@ -25,4 +25,4 @@ CREATE TABLE posts (
 );
 
 INSERT INTO `posts` (slug, title, content, author)
-VALUES("post-a", "POST-A", "<article><h2>Post A</h2><section><p>This is a basic post for the blog.</p><section></article>", "a00210586@mycambrian.ca");
+VALUES("post-a", "POST-A", "<article><h2>Post A</h2><section><p>This is a basic post for the blog.</p></section></article>", "a00210586@mycambrian.ca");
