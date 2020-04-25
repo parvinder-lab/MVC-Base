@@ -8,12 +8,12 @@ class Blog extends Controller {
     }
 
     function Index() {
-        echo("work");
+       // echo("work");
         $this->model("BlogModel");
     
         $posts = $this->BlogModel->getAllPosts();
         $input = Array("posts" => $posts);
-        print_r($posts);
+        //print_r($posts);
         $this->view("template/header");
         $this->view("blog/index", $input);
         $this->view("template/footer");
@@ -27,26 +27,33 @@ class Blog extends Controller {
 
     }
     function Create(){
-        $is_auth = isset($_SESSION["username"]);
-        if (!$is_auth) {
-            header("location: /blog");
-            return;
-        }
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-           $title = $_POST["title"];
-           $content = $_POST["content"];
-           $author = $_SESSION["username"];
+        $is_auth = isset($_SESSION["firstname"]);
+        if ($is_auth){
+            echo("authenticated");
 
-           $this->model("BlogModel");
-           $slug = $this->BlogModel->createPost($title, $author, $content);
-
-           header("location: /blog/read/" . $slug);
         } else {
-            $this->view("template/header");
-        $this->view("blog/create");
-        $this->view("template/footer");
-
+            header("location: /blog");
         }
+        // $is_auth = isset($_SESSION["username"]);
+        // if (!$is_auth) {
+        //     header("location: /blog");
+        //     return;
+        // }
+        // if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        //    $title = $_POST["title"];
+        //    $content = $_POST["content"];
+        //    $author = $_SESSION["username"];
+
+        //    $this->model("BlogModel");
+        //    $slug = $this->BlogModel->createPost($title, $author, $content);
+
+        //    header("location: /blog/read/" . $slug);
+        // } else {
+        //     $this->view("template/header");
+        // $this->view("blog/create");
+        // $this->view("template/footer");
+
+        // }
 
 
 

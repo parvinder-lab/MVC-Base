@@ -1,5 +1,5 @@
 <main>
-<?php echo($post["content"]); ?>
+<?php echo($post["$content"]); ?>
 
 </main>
 <aside>

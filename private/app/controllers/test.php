@@ -7,21 +7,23 @@ class Test extends Controller {
     }
 
     function Index () {
-        $this->view("template/header");
-        $is_auth = isset($_SESSION["firstname"]);
 
-        if ($is_auth) {
-            $this->view("test/auth");
-        }else {
-            $this->view("test/noauth");  
-        }
-       // $this->view("test/auth");
+        $this->view("template/header");
+        print_r($_SESSION);
+        $is_auth = isset($_SESSION["username"]);
+
+       if ($is_auth) {
+           $this->view("test/auth");
+       } else {
+           $this->view("test/noauth");  
+       }
+     // $this->view("test/test");
         $this->view("template/footer");
     }
-}
     
-    function login(){
-        echo("login");
+    function Login(){
+        
+    
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $post_csrf = htmlentities($_POST["csrf"]);
             $cook_csrf = htmlentities($_COOKIE["csrf"]);
@@ -32,18 +34,21 @@ class Test extends Controller {
             $this->model("UserModel");
             $cl_name = htmlentities($_POST["username"]);
             $cl_pass = htmlentities($_POST["password"]);
-
-            $auth = $this->UserModel->authenticateUser($cl_name, $cl_pass);
-         if ($auth) {
+    // $auth = $this->UserModel->authenticateUser('a00210586@mycambrian.ca','12345');
+        
+         $auth = $this->UserModel->authenticateUser($cl_name, $cl_pass);
+          if ($auth) {
          
-             
+           echo("authenticated");
              header("location: /test/");
              
          } else {
              echo("Not Authenticated");
+         } 
+        } else {
+             echo("bad csrf");
          }
-        }
-         else {
+        } else {
             $csrf = htmlentities(random_int(10000, 100000000));
           //   echo("$csrf");
              $_SESSION['csrf'] = $csrf;
@@ -53,7 +58,7 @@ class Test extends Controller {
          }  
 
         }
-        
+    
     
     function Logout(){
         session_unset();
