@@ -52,7 +52,7 @@ class Test extends Controller {
             $csrf = htmlentities(random_int(10000, 100000000));
           //   echo("$csrf");
              $_SESSION['csrf'] = $csrf;
-             setcookie("csrf" == $csrf);
+             setcookie("csrf", $csrf);
              $_COOKIE['csrf'] = $csrf;
              $this->view("test/login", array("csrf" => $csrf));
          }  
