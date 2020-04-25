@@ -80,7 +80,7 @@ abstract class Controller {
         if (is_array($data))
         extract($data);
 
-        require(ROOT . "/private/app/views/main/$path.php");
+        require(ROOT . "/private/app/views/$path.php");
 
     }
 }
