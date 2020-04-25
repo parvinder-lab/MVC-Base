@@ -11,6 +11,7 @@ class Blog extends Controller {
         $this->model("BlogModel");
         $posts = $this->BlogModel->getAllPosts();
         $input = Array("posts" => $posts);
+        print_r($posts);
         $this->view("template/header");
         $this->view("blog/index", $input);
         $this->view("template/footer");
