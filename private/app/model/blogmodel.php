@@ -33,6 +33,12 @@ function createPost($title, $author, $content) {
 
     return $slug;
 }
+
+function UpdatePost($slug, $title, $author, $content){
+    $ud_post = "UPDATE posts SET title = ?, content = ?, author = ? where slug = ?";
+    $stmt = $this->db->prepare($ud_post);
+    $stmt = $this->execute(Array($slug, $title, $content));
+}
     
     }
 ?>

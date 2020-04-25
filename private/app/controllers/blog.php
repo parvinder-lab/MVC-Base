@@ -46,8 +46,11 @@ class Blog extends Controller {
            $this->model("BlogModel");
            $slug = $this->BlogModel->createPost($title, $author, $content);
 
-           header("location: /blog/read/" . $slug);
+           header("location: /blog/read" . $slug);
         } else {
+            $this->model("BlogModel");
+           $slug = $this->BlogModel->createPost($title, $author, $content);
+
             $this->view("template/header");
         $this->view("blog/create");
         $this->view("template/footer");
@@ -57,5 +60,36 @@ class Blog extends Controller {
 
 
     }
+
+
+    function Update($postId){
+         $is_auth = isset($_SESSION["username"]);
+        if ($is_auth){
+            echo("authenticated");
+            header("location: /blog");
+            return;
+
+    }
+     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+           $title = $_POST["title"];
+           $content = $_POST["content"];
+           $author = $_POST["author"];
+
+           $this->model("BlogModel");
+           $slug = $this->BlogModel->UpdatePost($title, $author, $content);
+
+           header("location: /blog/read/" . $slug);
+        } else {
+             $this->model("BlogModel");
+           $slug = $this->BlogModel->UpdatePost($title, $author, $content);
+        
+
+            $this->view("template/header");
+        $this->view("blog/update");
+        $this->view("template/footer");
+
+        }
 } 
+}
 ?>
