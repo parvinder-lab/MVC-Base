@@ -22,7 +22,7 @@ class Login extends Controller {
         echo($param);
     }
 
-    function Login(){
+    function login(){
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $post_csrf = htmlentities($_POST["csrf"]);
             $cook_csrf = htmlentities($_COOKIE["csrf"]);
@@ -45,10 +45,11 @@ class Login extends Controller {
          }
         }
          else {
-            $csrf = random_int(10000, 100000000);
+            $csrf = htmlentities(random_int(10000, 100000000));
           //   echo("$csrf");
              $_SESSION['csrf'] = $csrf;
              setcookie("csrf" == $csrf);
+             $_COOKIE['csrf'] =$csrf;
              $this->view("test/login", array("csrf" => $csrf));
          }  
 
